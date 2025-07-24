@@ -1,638 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 8th Birthday Binance!</title>
-    <style>
-        :root {
-            --primary: #f0b90b;
-            --secondary: #1e2026;
-            --accent: #76808f;
-            --bg: #0b0e11;
-            --text: #eaecef;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            perspective: 1000px;
-        }
-        
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
-            opacity: 0;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: var(--opacity); transform: scale(1); }
-        }
-        
-        .card {
-            background: linear-gradient(145deg, #1e2026, #0b0e11);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(240, 185, 11, 0.3),
-                        0 0 0 2px var(--primary),
-                        0 0 20px rgba(240, 185, 11, 0.5);
-            padding: 2rem;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            z-index: 1;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(240, 185, 11, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1rem;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px var(--primary);
-            animation: pulse 2s infinite;
-            transition: transform 0.3s;
-        }
-        
-        .logo:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(240, 185, 11, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(240, 185, 11, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(240, 185, 11, 0); }
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--primary), #f8d33a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(240, 185, 11, 0.3);
-        }
-        
-        .subtitle {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .timeline {
-            position: relative;
-            margin: 2rem 0;
-            padding-left: 50px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--primary), #f8d33a);
-            border-radius: 2px;
-        }
-        
-        .milestone {
-            position: relative;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(30, 32, 38, 0.7);
-            border-radius: 10px;
-            border-left: 3px solid var(--primary);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .milestone:hover {
-            transform: translateX(10px);
-            background: rgba(30, 32, 38, 0.9);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .milestone::before {
-            content: '';
-            position: absolute;
-            left: -38px;
-            top: 20px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(240, 185, 11, 0.3);
-        }
-        
-        .year {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .event {
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-        
-        .crypto-coins {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 2rem 0;
-        }
-        
-        .coin {
-            width: 60px;
-            height: 60px;
-            background-color: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .coin:hover {
-            transform: translateY(-10px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(240, 185, 11, 0.3);
-        }
-        
-        .coin::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0) 45%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 55%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.3s;
-        }
-        
-        .coin:hover::after {
-            left: 100%;
-        }
-        
-        .cake-container {
-            position: relative;
-            height: 200px;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-        
-        .cake {
-            position: relative;
-            width: 150px;
-            height: 100px;
-            background: linear-gradient(to bottom, #e0a800, #f0b90b);
-            border-radius: 10px 10px 0 0;
-            z-index: 1;
-        }
-        
-        .cake::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: linear-gradient(to bottom, #f8d33a, #e0a800);
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .candle {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 40px;
-            background: linear-gradient(to right, #ff5e5e, #ff9999);
-            border-radius: 5px;
-            z-index: 2;
-        }
-        
-        .flame {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 20px;
-            background: linear-gradient(to top, #ff5e00, #ffff00);
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 10px #ff5e00, 0 0 20px #ffff00;
-            animation: flicker 0.5s infinite alternate;
-            z-index: 3;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-            50% { transform: translateX(-50%) scale(0.9) rotate(2deg); opacity: 0.8; }
-        }
-        
-        .plate {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 20px;
-            background: linear-gradient(to bottom, #76808f, #1e2026);
-            border-radius: 50%;
-            z-index: 0;
-        }
-        
-        .message {
-            text-align: center;
-            margin: 2rem 0;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .confetti-button {
-            background: linear-gradient(to right, var(--primary), #f8d33a);
-            color: var(--secondary);
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(240, 185, 11, 0.4);
-            margin-top: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .confetti-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(240, 185, 11, 0.6);
-        }
-        
-        .confetti-button:active {
-            transform: translateY(1px);
-        }
-        
-        .confetti-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                45deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.2) 50%,
-                transparent 100%
-            );
-            transform: translateX(-100%);
-            transition: transform 0.5s;
-        }
-        
-        .confetti-button:hover::after {
-            transform: translateX(100%);
-        }
-        
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--accent);
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            opacity: 0;
-            z-index: 999;
-            animation: confetti-fall 5s linear forwards;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .card {
-                width: 95%;
-                padding: 1.5rem;
-            }
-            
-            .logo {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .timeline {
-                padding-left: 30px;
-            }
-            
-            .milestone::before {
-                left: -28px;
-                width: 15px;
-                height: 15px;
-            }
-            
-            .coin {
-                width: 50px;
-                height: 50px;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 8th Birthday Binance!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #0e0e0e 0%, #000000 100%);
+      color: #f1c40f;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: #f1c40f;
+      text-shadow: 0 0 20px #f39c12;
+    }
+
+    .rocket {
+      width: 100px;
+      animation: rocketFly 10s linear infinite;
+      position: absolute;
+      left: -100px;
+      top: 60%;
+    }
+
+    @keyframes rocketFly {
+      0% {
+        left: -100px;
+        top: 60%;
+        transform: rotate(0deg);
+      }
+      100% {
+        left: 110%;
+        top: 20%;
+        transform: rotate(360deg);
+      }
+    }
+
+    .card {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #f1c40f50;
+      transition: transform 0.4s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .message {
+      font-size: 1.4em;
+      line-height: 1.6em;
+      color: #f9e79f;
+      animation: textFade 4s ease-in-out;
+    }
+
+    @keyframes textFade {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .icons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .icons img {
+      width: 50px;
+      transition: transform 0.3s;
+    }
+
+    .icons img:hover {
+      transform: scale(1.3) rotate(20deg);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 1.1em;
+      color: #aaa;
+    }
+
+    .tag {
+      background: #f1c40f;
+      color: #000;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .telegram {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .celebrate-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .celebrate-btn button {
+      background-color: #f1c40f;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      color: #000;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .celebrate-btn button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #f1c40f80;
+    }
+
+    .star {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #f1c40f;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall 2s linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 2em;
+      }
+      .message {
+        font-size: 1.1em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="stars" id="stars"></div>
-        
-        <div class="card" id="card">
-            <div class="header">
-                <div class="logo">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#F0B90B"/>
-                        <path d="M8.2541 12.0001L5.85352 14.4007L3.45294 12.0001L5.85352 9.59955L8.2541 12.0001ZM12.0001 8.2541L14.4007 5.85352L12.0001 3.45294L9.59955 5.85352L12.0001 8.2541ZM15.7461 12.0001L18.1467 9.59955L20.5473 12.0001L18.1467 14.4007L15.7461 12.0001ZM12.0001 15.7461L9.59955 18.1467L12.0001 20.5473L14.4007 18.1467L12.0001 15.7461Z" fill="#1E2026"/>
-                        <path d="M12.0001 14.4007L14.4007 12.0001L12.0001 9.59955L9.59955 12.0001L12.0001 14.4007Z" fill="#1E2026"/>
-                    </svg>
-                </div>
-                <h1>Happy 8th Birthday Binance!</h1>
-                <div class="subtitle">Celebrating 8 Years of Crypto Innovation</div>
-            </div>
-            
-            <div class="timeline">
-                <div class="milestone">
-                    <div class="year">2017</div>
-                    <div class="event">Binance founded by Changpeng Zhao (CZ)</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2018</div>
-                    <div class="event">Binance Chain development begins</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2019</div>
-                    <div class="event">Launch of Binance.US and Binance Futures</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2020</div>
-                    <div class="event">Binance Smart Chain goes live</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2021</div>
-                    <div class="event">BNB reaches all-time high</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2022</div>
-                    <div class="event">Binance becomes global regulatory compliant</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2023</div>
-                    <div class="event">Binance reaches 150M+ registered users</div>
-                </div>
-                <div class="milestone">
-                    <div class="year">2024</div>
-                    <div class="event">Launch of revolutionary new products</div>
-                </div>
-            </div>
-            
-            <div class="crypto-coins">
-                <div class="coin">BTC</div>
-                <div class="coin">ETH</div>
-                <div class="coin">BNB</div>
-                <div class="coin">SOL</div>
-                <div class="coin">XRP</div>
-                <div class="coin">ADA</div>
-                <div class="coin">DOGE</div>
-                <div class="coin">DOT</div>
-            </div>
-            
-            <div class="cake-container">
-                <div class="candle">
-                    <div class="flame"></div>
-                </div>
-                <div class="cake"></div>
-                <div class="plate"></div>
-            </div>
-            
-            <div class="message">
-                <p>From humble beginnings to becoming the <span class="highlight">world's leading cryptocurrency exchange</span>, Binance has revolutionized the way we think about finance.</p>
-                <p>Here's to <span class="highlight">8 amazing years</span> and many more to come!</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <button class="confetti-button" id="celebrateBtn">Celebrate 8 Years!</button>
-            </div>
-            
-            <div class="footer">
-                <p>Designed with ❤️ for Binance's 8th Anniversary</p>
-                <p>#BinanceTurns8</p>
-            </div>
-        </div>
+  <header>
+    <h1>🎉 Happy 8th Birthday Binance! 🎂</h1>
+  </header>
+
+  <img class="rocket" src="https://cdn-icons-png.flaticon.com/512/3215/3215456.png" alt="Rocket" />
+
+  <div class="card">
+    <p class="message">
+      Binance launched in 2017 with a dream to revolutionize finance — and in just 8 years, you've built the biggest crypto community in the galaxy. 🌌<br><br>
+      From CEX to DeFi, Launchpad to BNB Chain, millions of Binancians thank you for the tools, trust, and transparency you bring. ❤️<br><br>
+      🚀 Here’s to more innovation<br>
+      🛡️ Stronger security<br>
+      🌍 A global crypto future.
+    </p>
+
+    <div class="tag">#BinanceTurns8</div>
+    <div class="telegram">@SyedGoharHussain</div>
+
+    <div class="icons">
+      <a href="https://syedgoharhussain.github.io"><img src="https://cdn-icons-png.flaticon.com/512/825/825524.png" alt="Star" /></a>
     </div>
 
-    <script>
-        // Create stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.width = `${Math.random() * 3 + 1}px`;
-            star.style.height = star.style.width;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
-            star.style.setProperty('--opacity', Math.random() * 0.5 + 0.5);
-            starsContainer.appendChild(star);
-        }
-        
-        // 3D card effect
-        const card = document.getElementById('card');
-        document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-        
-        // Reset card position when mouse leaves
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        });
-        
-        // Confetti celebration
-        const celebrateBtn = document.getElementById('celebrateBtn');
-        celebrateBtn.addEventListener('click', () => {
-            for (let i = 0; i < 100; i++) {
-                createConfetti();
-            }
-            
-            // Add animation to cake
-            const flame = document.querySelector('.flame');
-            flame.style.animation = 'flicker 0.2s infinite alternate';
-            
-            setTimeout(() => {
-                flame.style.animation = 'flicker 0.5s infinite alternate';
-            }, 2000);
-        });
-        
-        function createConfetti() {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            
-            // Random properties
-            const colors = ['#f0b90b', '#ff5e5e', '#5e9aff', '#5eff8f', '#ff5ee8'];
-            const shapes = ['circle', 'square', 'triangle'];
-            const shape = shapes[Math.floor(Math.random() * shapes.length)];
-            
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.width = `${Math.random() * 10 + 5}px`;
-            confetti.style.height = `${Math.random() * 10 + 5}px`;
-            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            
-            if (shape === 'circle') {
-                confetti.style.borderRadius = '50%';
-            } else if (shape === 'triangle') {
-                confetti.style.width = '0';
-                confetti.style.height = '0';
-                confetti.style.borderLeft = '5px solid transparent';
-                confetti.style.borderRight = '5px solid transparent';
-                confetti.style.borderBottom = `10px solid ${confetti.style.backgroundColor}`;
-                confetti.style.backgroundColor = 'transparent';
-            }
-            
-            document.body.appendChild(confetti);
-            
-            // Remove confetti after animation
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
-        }
-        
-        // Coin hover effects
-        const coins = document.querySelectorAll('.coin');
-        coins.forEach(coin => {
-            coin.addEventListener('mouseenter', () => {
-                coin.style.transform = 'translateY(-10px) scale(1.1)';
-                coin.style.boxShadow = '0 10px 20px rgba(240, 185, 11, 0.3)';
-            });
-            
-            coin.addEventListener('mouseleave', () => {
-                coin.style.transform = '';
-                coin.style.boxShadow = '';
-            });
-        });
-        
-        // Milestone hover effects
-        const milestones = document.querySelectorAll('.milestone');
-        milestones.forEach(milestone => {
-            milestone.addEventListener('mouseenter', () => {
-                milestone.style.transform = 'translateX(10px)';
-                milestone.style.background = 'rgba(30, 32, 38, 0.9)';
-                milestone.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
-            });
-            
-            milestone.addEventListener('mouseleave', () => {
-                milestone.style.transform = '';
-                milestone.style.background = '';
-                milestone.style.boxShadow = '';
-            });
-        });
-    </script>
+    <div class="celebrate-btn">
+      <button onclick="celebrate()">
+        <img src="download-removebg-preview.png" width="25" height="25" alt="BNB" />
+        Celebrate
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    Designed with ❤️ by Gohar — Binance believer since Day 1
+  </footer>
+
+  <script>
+    function celebrate() {
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 20 + 'vh';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 2000);
+      }
+    }
+  </script>
 </body>
 </html>
